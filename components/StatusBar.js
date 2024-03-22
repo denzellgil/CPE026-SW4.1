@@ -61,29 +61,25 @@ export default class Status extends React.Component{
                 animated={true} 
                 /> 
             );
-        const messageContainer = (
-            <View style={styles.messageContainer}>
-            {statusBar}
-                <View style={styles.myName}>
-                    <Text style={styles.text}> Lobotomy Kaisen </Text>
-                </View>
-                {isConnected && type ? (
-                    <Animated.View style={{ 
-                        ...styles.networkUpBubble, 
-                        opacity: fadeAnim }}>
-                        <Text style={styles.text}>Type: {type} </Text>
-                        <Text style={styles.text}>There is a {type} network connection</Text>
-                    </Animated.View>
-                ) : (
-                    <Animated.View style={{ 
-                        ...styles.networkDownbubble, 
-                        opacity: fadeAnim }}>
-                        <Text style={styles.text}>Type: {type} </Text>
-                        <Text style={styles.text}>No {type} network connection</Text>
-                    </Animated.View>
-                )}
-            </View>
-        );
+            const messageContainer = (
+                <Animated.View style={[styles.messageContainer, { opacity: fadeAnim }]}>
+                    {statusBar}
+                    <View style={styles.myName}>
+                        <Text style={styles.text}> Lobotomy Kaisen </Text>
+                    </View>
+                    {isConnected && type ? (
+                        <View style={styles.networkUpBubble}>
+                            <Text style={styles.text}>Type: {type} </Text>
+                            <Text style={styles.text}>There is a {type} network connection</Text>
+                        </View>
+                    ) : (
+                        <View style={styles.networkDownbubble}>
+                            <Text style={styles.text}>Type: {type} </Text>
+                            <Text style={styles.text}>No {type} network connection</Text>
+                        </View>
+                    )}
+                </Animated.View>
+            );
         if(Platform.OS === "ios"){
             return (
             <View style={[styles.status, {backgroundColor}]}>
